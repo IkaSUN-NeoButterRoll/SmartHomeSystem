@@ -115,7 +115,7 @@ namespace DiscordHomeAPIProvider
                 await message.Channel.SendFileAsync(stream1, "test.jpg");
 
                 // API呼び出しが完了するまで待機
-                CallAPI().Wait();
+                await CallAPI();
 
                 using var frame = new Mat();
                 VCM.Capture.Read(frame);

@@ -72,7 +72,13 @@ namespace LanDeviceWatcher
         /// <summary>
         /// 接続状態
         /// </summary>
-        private static string state = "Connected";
+        private static State state = State.Disconnected;
+
+        enum State
+        {
+            Connected,
+            Disconnected
+        }
 
         static void Main(string[] args)
         {
@@ -92,14 +98,14 @@ namespace LanDeviceWatcher
 
         private static void TimerElapsed(object sender, ElapsedEventArgs e)
         {
-            CheckDevice(TARGET_IP);
+            CheckDeviceAsync(TARGET_IP);
         }
 
         /// <summary>
         /// 監視対象のIPアドレスに対してPingを送り、接続状態を確認するメソッド
         /// </summary>
         /// <param name="ip">監視対象のIP</param>
-        private static void CheckDevice(string ip)
+        private static async void CheckDeviceAsync(string ip)
         {
             using (Ping ping = new Ping())
             {
@@ -109,11 +115,11 @@ namespace LanDeviceWatcher
                     if (reply.Status == IPStatus.Success)
                     {
                         // デバイスが見つかった場合、状態がDisconnectedからConnectedに変わるときにAPIを呼び出す
-                        if (state == "Disconnected")
+                        if (state == State.Disconnected)
                         {
                             Logger.Info($"{ip}: Connected");
-                            state = "Connected";
-                            CallAPI().Wait();
+                            state = State.Connected;
+                            await CallAPI();
                         }
 
                         lastFoundTime = DateTime.Now;
@@ -121,11 +127,11 @@ namespace LanDeviceWatcher
                     else
                     {
                         // デバイスが一定時間見つからない場合、状態がConnectedからDisconnectedに変わるときにAPIを呼び出す
-                        if (state == "Connected" && lastFoundTime.AddMilliseconds(GRACE_MILLISECONDS) < DateTime.Now)
+                        if (state == State.Connected && lastFoundTime.AddMilliseconds(GRACE_MILLISECONDS) < DateTime.Now)
                         {
                             Logger.Info($"{ip}: Disconnected");
-                            state = "Disconnected";
-                            CallAPI().Wait();
+                            state = State.Disconnected;
+                            await CallAPI();
                         }
                     }
                 }
