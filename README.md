@@ -4,22 +4,39 @@ Raspberry Pi PicoをIRコントローラー化し、複数のシステムと連�
 
 ## システム構成
 
+### 全体構成
+
 ```
-[スマートフォン（LAN監視対象）]
-        ↓ Ping監視
-[LanDeviceWatcher（C#）]
-        ↓ HTTP POST（接続/切断検知時）
-        ├─────────────────────────────────┐
-[DiscordHomeAPIProvider（C#）]    [RaspberryPiPicoIrController（MicroPython）]
-Discordコマンド受信                       ↓ PWM（38kHz搬送波）
-カメラ映像送信                       [赤外線LED]
-        ↓ HTTP POST                       ↓
-        └─────────────────────────────────→ [照明などの赤外線対応機器]
+[スマートフォン / ブラウザ]  [DiscordHomeAPIProvider]  [LanDeviceWatcher]
+             ↓                          ↓                       ↓
+             └──────────────────────────┴───────────────────────┘
+                                        ↓ HTTP POST
+                          [RaspberryPiPicoIrController]
+                                        ↓ PWM（38kHz搬送波）
+                                   [赤外線LED]
+                                        ↓
+                               [照明などの赤外線対応機器]
 ```
 
-### 動作例
-- スマートフォンがLANから切断 → 帰宅・外出を検知 → 照明を自動ON/OFF
-- Discordで `!toggle` コマンド → 照明をトグル + カメラ映像を送信して状態確認
+### 操作パターン
+
+**① ブラウザ・スマートフォンから直接操作**
+```
+[ブラウザ / スマートフォン] → HTTP POST → [Pico] → [照明]
+```
+同一LAN内であればブラウザからコントロールパネルにアクセスして操作できます。
+
+**② Discordから操作**
+```
+[Discord] → [DiscordHomeAPIProvider] → HTTP POST → [Pico] → [照明]
+```
+Discordのコマンドで照明を操作します。操作前後のカメラ映像も送信されます。
+
+**③ デバイスの接続・切断を検知して自動操作**
+```
+[スマートフォン] ←Ping監視→ [LanDeviceWatcher] → HTTP POST → [Pico] → [照明]
+```
+スマートフォンのLAN接続・切断を検知して照明を自動でON/OFFします。帰宅・外出の検知に利用できます。
 
 ---
 
