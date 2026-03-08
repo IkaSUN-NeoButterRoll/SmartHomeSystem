@@ -220,7 +220,7 @@ namespace DiscordHomeAPIProvider
         /// <summary>
         /// ログ出力先のディレクトリとファイルが存在することを保証する
         /// </summary>
-        private void GaranteeLogDirectoryAndFile()
+        private void GuaranteeLogDirectoryAndFile()
         {
             var dir = Path.GetDirectoryName(OutputPath);
             if (!Path.Exists(dir))
@@ -251,7 +251,7 @@ namespace DiscordHomeAPIProvider
 
                 DeleteExpiredFiles();
 
-                GaranteeLogDirectoryAndFile();
+                GuaranteeLogDirectoryAndFile();
 
                 // ログをコンソールとファイルに出力する
                 Console.WriteLine(message);
