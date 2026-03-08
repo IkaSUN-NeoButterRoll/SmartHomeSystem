@@ -2,6 +2,8 @@
 
 Raspberry Pi PicoをIRコントローラー化し、複数のシステムと連携して照明などの赤外線対応機器を自動制御するスマートホームシステムです。
 
+![toggle](https://github.com/user-attachments/assets/a744b9bd-a85c-4621-ad78-6e2ffd71686d)
+
 ## システム構成
 
 ### 全体構成
