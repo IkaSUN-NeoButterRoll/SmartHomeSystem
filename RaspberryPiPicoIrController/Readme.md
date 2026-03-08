@@ -39,12 +39,16 @@ Raspberry Pi PicoをWebサーバー化し、ブラウザUIまたはHTTP APIで�
 cp config.example.py config.py
 ```
 
-`config.py`を編集してWi-FiのSSIDとパスワードを設定します。
+`config.py`を編集してWi-FiのSSIDとパスワード、送信繰り返し回数を設定します。
 
 ```python
 SSID = "your_ssid"
 PASSWORD = "your_password"
+REPEAT_COUNT = 1  # 赤外線信号の送信繰り返し回数
 ```
+
+> **`REPEAT_COUNT` について**
+> 赤外線信号を送信する繰り返し回数です。受信側の感度が低い場合や誤動作が多い場合は値を大きくすることで改善することがあります。通常は`1`で問題ありません。
 
 **2. ファイルをPicoに転送する**
 
