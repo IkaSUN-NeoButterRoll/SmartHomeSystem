@@ -1,0 +1,39 @@
+config.py
+appsettings.json
+
+# Pytnon系
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# ビルド成果物
+bin/
+obj/
+
+# Visual Studio関連
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGetパッケージ（復元可能なので不要）
+packages/
+*.nupkg
+
+# 環境設定（個人の設定）
+appsettings.Development.json
+appsettings.Local.json
+*.env
+
+# ログ
+*.log
+logs/
+
+# OS関連
+.DS_Store        # Mac
+Thumbs.db        # Windows
+
+# Rider（JetBrains IDE）
+.idea/

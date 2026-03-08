@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Raspberry Pi Pico W</title>
+        <link rel="icon" href="data:">
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <script src="scripts.js"></script>
+    </head>
+    <body>
+        <h1>Ceiling light Controller</h1>
+        <br>
+        <br>
+        <button class="buttonGreen" onclick="post('cl', 'pw')">電源</button>
+        <br>
+        <br>
+        <button class="buttonGray" onclick="post('cl', 'fp')">全灯</button>
+        <button class="buttonGray" onclick="post('cl', 'nl')">常夜灯</button>
+        <button class="buttonGray" onclick="post('cl', 'bt')">明 ⬆</button>
+        <br>
+        <button class="buttonGray" onclick="post('cl', 'wt')">白色 ⬅</button>
+        <button class="buttonGray" onclick="post('cl', 'wc')">暖色 ➡</button>
+        <button class="buttonGray" onclick="post('cl', 'dk')">暗 ⬇</button>
+        <br>
+        <br>
+        <button class="buttonGray" onclick="post('cl', 'rb')">読書</button>
+        <button class="buttonGray" onclick="post('cl', 'hw')">家事</button>
+        <button class="buttonGray" onclick="post('cl', 'ma')">メモリA</button>
+        <br>
+        <button class="buttonGray" onclick="post('cl', 'rx')">安らぎ</button>
+        <button class="buttonGray" onclick="post('cl', 'es')">省エネ</button>
+        <button class="buttonGray" onclick="post('cl', 'mb')">メモリB</button>
+        <br>
+    </body>
+</html>

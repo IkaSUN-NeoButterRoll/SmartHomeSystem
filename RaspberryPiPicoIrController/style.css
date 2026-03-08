@@ -1,0 +1,32 @@
+html
+{
+    font-family: Helvetica;
+    display: inline-block;
+    margin: 0px auto;
+    text-align: center;
+}
+button
+{
+    border: 2px solid #000000;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    width: 30% ;
+    height: 70px;
+    cursor: pointer;
+}
+.buttonGreen
+{
+    background-color: #4CAF50;
+}
+.buttonGray
+{
+    background-color: #a0a0a0;
+}
+.buttonCenter {
+    background-color: #cacc40;
+}
