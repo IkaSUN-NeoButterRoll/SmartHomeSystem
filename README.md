@@ -22,19 +22,19 @@ Raspberry Pi PicoをIRコントローラー化し、複数のシステムと連�
 
 ### 操作パターン
 
-**① ブラウザ・スマートフォンから直接操作**
+**1. ブラウザ・スマートフォンから直接操作**
 ```
 [ブラウザ / スマートフォン] → HTTP POST → [Pico] → [照明]
 ```
 同一LAN内であればブラウザからコントロールパネルにアクセスして操作できます。
 
-**② Discordから操作**
+**2. Discordから操作**
 ```
 [Discord] → [DiscordHomeAPIProvider] → HTTP POST → [Pico] → [照明]
 ```
 Discordのコマンドで照明を操作します。操作前後のカメラ映像も送信されます。
 
-**③ デバイスの接続・切断を検知して自動操作**
+**3. デバイスの接続・切断を検知して自動操作**
 ```
 [スマートフォン] ←Ping監視→ [LanDeviceWatcher] → HTTP POST → [Pico] → [照明]
 ```
@@ -54,7 +54,7 @@ Discordのコマンドで照明を操作します。操作前後のカメラ映�
 
 ## RaspberryPiPicoIrController
 
-Raspberry Pi PicoをHTTPサーバー化し、ブラウザUIまたはHTTP APIで赤外線信号を送信します。
+Raspberry Pi Pico WをHTTPサーバー化し、ブラウザUIまたはHTTP APIで赤外線信号を送信します。
 
 詳細は [RaspberryPiPicoIrController/Readme.md](RaspberryPiPicoIrController/Readme.md) を参照してください。
 
@@ -68,6 +68,8 @@ Raspberry Pi PicoをHTTPサーバー化し、ブラウザUIまたはHTTP APIで�
 - MicroPython v1.20以上
 
 **セットアップ**
+
+事前にPicoWのIPアドレスを静的に設定してください。
 
 ```bash
 cp config.example.py config.py
@@ -91,6 +93,8 @@ LAN上の指定デバイスをPingで監視し、接続・切断を検知してI
 - Windows
 
 **セットアップ**
+
+事前にスマートフォン(監視対象)のIPアドレスを静的に設定してください。
 
 ```bash
 cp appsettings.example.json appsettings.json
